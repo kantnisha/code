@@ -1,0 +1,7 @@
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\bin\Debug\SchoolAdmission.Modules.dll
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\bin\Debug\SchoolAdmission.Modules.pdb
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\obj\Debug\SchoolAdmission.Modules.dll
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\obj\Debug\SchoolAdmission.Modules.pdb
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\bin\Debug\SchoolAdmission.Common.dll
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\bin\Debug\SchoolAdmission.Common.pdb
+E:\Technical\Code\Extensibility\Modules\SchoolAdmission\SchoolAdmission.Modules\obj\Debug\SchoolAdmission.Modules.csprojResolveAssemblyReference.cache

@@ -75,6 +75,10 @@
       <Project>{bfd95d06-23f4-41df-a03c-726a91c7af0d}</Project>
       <Name>SchoolAdmission.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SchoolAdmission.Modules\SchoolAdmission.Modules.csproj">
+      <Project>{4c155c6a-87b4-4813-8d15-518011b4aa97}</Project>
+      <Name>SchoolAdmission.Modules</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SchoolAdmission.Providers\SchoolAdmission.Providers.csproj">
       <Project>{469b294e-82dd-45ef-8c40-4f2d1578162e}</Project>
       <Name>SchoolAdmission.Providers</Name>

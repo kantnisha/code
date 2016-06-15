@@ -59,11 +59,13 @@
   <ItemGroup>
     <Compile Include="AdmissionManager.cs" />
     <Compile Include="Configuration\AdmissionEngineConfigurationSection.cs" />
+    <Compile Include="Configuration\MailerElement.cs" />
+    <Compile Include="Configuration\ModuleElementCollection.cs" />
+    <Compile Include="Configuration\ModuleElement.cs" />
+    <Compile Include="Configuration\PaymentProcessorElement.cs" />
+    <Compile Include="Configuration\ProvideTypeElement.cs" />
     <Compile Include="Contracts\IComponentFactory.cs" />
     <Compile Include="DataAccess\SchoolRepository.cs" />
-    <Compile Include="Entities\Student.cs" />
-    <Compile Include="Entities\Subject.cs" />
-    <Compile Include="Entities\SubjectAvailability.cs" />
     <Compile Include="Contracts\ISchoolRepository.cs" />
     <Compile Include="Factory\ComponentFactory.cs" />
     <Compile Include="Mailer.cs" />

@@ -1,5 +1,5 @@
-﻿using SchoolAdmission.Contracts;
-using SchoolAdmission.Engine.Entities;
+﻿using SchoolAdmission.Common.Entities;
+using SchoolAdmission.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 

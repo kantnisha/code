@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using SchoolAdmission.Engine.Configuration;
 using SchoolAdmission.Engine.Contracts;
+using SchoolAdmission.Common.Modules;
 
 namespace SchoolAdmission.Engine
 {
@@ -19,6 +20,7 @@ namespace SchoolAdmission.Engine
         IPaymentProcessor _paymentProcessor = null;
         IMailer _mailer = null;
         IComponentFactory componentFactory = null;
+        AdmissionEvents admissionEvents = null;
 
         public AdmissionManager(ISchoolRepository schoolRepository, IComponentFactory factory)
         {
@@ -27,6 +29,7 @@ namespace SchoolAdmission.Engine
             componentFactory = factory;
             this._paymentProcessor = componentFactory.PaymentProcessor;
             this._mailer = componentFactory.Mailer;
+            admissionEvents = componentFactory.GetEvents();
         }
 
         public void ProcessAdmission(AdmissionData admissionData)
@@ -41,6 +44,21 @@ namespace SchoolAdmission.Engine
             double fee = 0;
             foreach (var subject in admissionData.OptingSubjectsData)
             {
+                if (admissionEvents.AdmissionDataProcessed != null)
+                {
+                    AdmissionDataProcessedEventArgs args = new AdmissionDataProcessedEventArgs(student, subject);
+                    admissionEvents.AdmissionDataProcessed(args);
+                    if (args.Cancel)
+                    {
+                        continue;
+                    }
+                }
+
+                var seatAvailability = this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable;
+                this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable = seatAvailability - 1;
+                Console.WriteLine("Subject availability for subject {0} reduced by 1 for {1} months", subject.SubjectId, subject.NoOfMonths);
+                Console.WriteLine(string.Format("Enrolled student {0} in subject {1} for {2} months", student.Name, subject.SubjectId, subject.NoOfMonths));
+
                 fee += subject.TutionFeePerMonth * subject.NoOfMonths;
             }
 
@@ -50,21 +68,7 @@ namespace SchoolAdmission.Engine
             {
                 throw new ApplicationException(string.Format("Credit card processing failed"));
             }
-
-            foreach (var subject in admissionData.OptingSubjectsData)
-            {
-                var seatAvailability = this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable;
-                this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable = seatAvailability - 1;
-                Console.WriteLine("Subject availability for subject {0} reduced by 1 for {1} months", subject.SubjectId, subject.NoOfMonths);
-            }
-
-            foreach (var subject in admissionData.OptingSubjectsData)
-            {
-                var seatAvailability = this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable;
-                this._schoolRepository.SubjectAvailability.Where(s => s.Id == subject.SubjectId).FirstOrDefault().SeatsAvailable = seatAvailability - 1;
-                Console.WriteLine(string.Format("Enrolled student {0} in subject {1} for {2} months", student.Name, subject.SubjectId, subject.NoOfMonths));
-            }
-
+            
             if (paymentSuccess)
             {
                 this._mailer.SendInvoiceEmail(admissionData);

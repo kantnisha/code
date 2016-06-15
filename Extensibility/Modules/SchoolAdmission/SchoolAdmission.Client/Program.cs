@@ -28,9 +28,9 @@ namespace SchoolAdmission.Client
                 OptingSubjectsData = new List<OptingSubjectData>()
                 {
                         new OptingSubjectData() {SubjectId=1, NoOfMonths=5, TutionFeePerMonth=540 },
-                        new OptingSubjectData() {SubjectId=2, NoOfMonths=4, TutionFeePerMonth=540 },
-                        new OptingSubjectData() {SubjectId=3, NoOfMonths=6, TutionFeePerMonth=540 },
-                        new OptingSubjectData() {SubjectId=4, NoOfMonths=8, TutionFeePerMonth=540 },
+                        new OptingSubjectData() {SubjectId=2, NoOfMonths=4, TutionFeePerMonth=600 },
+                        new OptingSubjectData() {SubjectId=3, NoOfMonths=6, TutionFeePerMonth=350 },
+                        new OptingSubjectData() {SubjectId=4, NoOfMonths=8, TutionFeePerMonth=250 },
                 }
             };
 

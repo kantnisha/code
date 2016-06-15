@@ -1,9 +1,5 @@
-﻿using SchoolAdmission.Engine.Entities;
-using System;
+﻿using SchoolAdmission.Common.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolAdmission.Contracts
 {

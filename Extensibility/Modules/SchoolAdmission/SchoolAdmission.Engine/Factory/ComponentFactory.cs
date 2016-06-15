@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 using SchoolAdmission.Common.Contracts;
 using SchoolAdmission.Engine.Configuration;
 using System.Configuration;
+using SchoolAdmission.Common.Modules;
 
 namespace SchoolAdmission.Engine.Factory
 {
     public class ComponentFactory : IComponentFactory
     {
-        private AdmissionEngineConfigurationSection config = null;
+        private AdmissionEvents admissionEvent = null;
+        private AdmissionEngineConfigurationSection config;
         public ComponentFactory()
         {
             config = ConfigurationManager.GetSection("admissionEngine") as AdmissionEngineConfigurationSection;
+
+            admissionEvent = new AdmissionEvents();
+
+            foreach(ModuleElement elm in config.Modules)
+            {
+                IAdmissionModule module = Activator.CreateInstance(Type.GetType(elm.Type)) as IAdmissionModule;
+                module.Initialize(admissionEvent);
+            }
+
         }
         public IMailer Mailer
         {
@@ -34,6 +45,11 @@ namespace SchoolAdmission.Engine.Factory
             {
                 return Activator.CreateInstance(Type.GetType(this.config.PaymentProcessor.Type)) as IPaymentProcessor;
             }
+        }
+
+        public AdmissionEvents GetEvents()
+        {
+            return admissionEvent;
         }
     }
 }

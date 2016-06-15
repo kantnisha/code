@@ -2,10 +2,10 @@
 
 namespace SchoolAdmission.Engine.Configuration
 {
-    public class AdmissionEngineConfigurationSection:ConfigurationSection
+    public class AdmissionEngineConfigurationSection : ConfigurationSection
     {
 
-        [ConfigurationProperty("mailer", IsRequired =true)]
+        [ConfigurationProperty("mailer", IsRequired = true)]
         public MailerElement Mailer
         {
             get
@@ -18,7 +18,7 @@ namespace SchoolAdmission.Engine.Configuration
             }
         }
 
-        [ConfigurationProperty("paymentProcessor", IsRequired =true)]
+        [ConfigurationProperty("paymentProcessor", IsRequired = true)]
         public PaymentProcessorElement PaymentProcessor
         {
             get
@@ -30,62 +30,18 @@ namespace SchoolAdmission.Engine.Configuration
                 base["paymentProcessor"] = value;
             }
         }
-    }
 
-    public class ProvideTypeElement:ConfigurationElement
-    {
-        [ConfigurationProperty("name", IsRequired = true, IsKey = true)]
-        public string Name {
-            get
-            {
-                return (string)base["name"];
-            }
-            set
-            {
-                base["name"] = value;
-            }
-        }
-
-        [ConfigurationProperty("type", IsRequired =true, IsKey =true)]
-        public string Type {
-            get
-            {
-                return (string)base["type"];
-            }
-            set
-            {
-                base["type"] = value;
-            }
-        }
-            
-    }
-
-    public class MailerElement: ProvideTypeElement
-    {
-        [ConfigurationProperty("fromAddress", IsRequired = true, IsKey = true)]
-        public string FromAddress
+        [ConfigurationProperty("modules", IsRequired =true)]
+        public ModuleElementCollection Modules
         {
             get
             {
-                return (string)base["fromAddress"];
-            }
-        }
-
-        [ConfigurationProperty("smtpServer", IsRequired = true, IsKey = true)]
-        public string SmtpServer
-        {
-            get
-            {
-                return (string)base["smtpServer"];
+                return (ModuleElementCollection)base["modules"];
             }
             set
             {
-                base["smtpServer"] = value;
+                base["modules"] = value;
             }
         }
-    }
-
-    public class PaymentProcessorElement: ProvideTypeElement
-    {
     }
 }

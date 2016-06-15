@@ -1,4 +1,5 @@
 ﻿using SchoolAdmission.Common.Contracts;
+using SchoolAdmission.Common.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace SchoolAdmission.Engine.Contracts
     {
         IPaymentProcessor PaymentProcessor { get; }
         IMailer Mailer { get; }
+        AdmissionEvents GetEvents();
     }
 }

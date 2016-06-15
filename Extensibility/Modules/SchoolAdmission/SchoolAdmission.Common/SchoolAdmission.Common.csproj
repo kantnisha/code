@@ -44,6 +44,13 @@
     <Compile Include="Contracts\IPaymentProcessor.cs" />
     <Compile Include="DataModels\AdmissionData.cs" />
     <Compile Include="DataModels\OptingSubjectData.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Subject.cs" />
+    <Compile Include="Entities\SubjectAvailability.cs" />
+    <Compile Include="Modules\AdmissionDataProcessedEventArgs.cs" />
+    <Compile Include="Modules\AdmissionEvents.cs" />
+    <Compile Include="Modules\AdmissionModuleDelegate.cs" />
+    <Compile Include="Modules\IAdmissionModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
